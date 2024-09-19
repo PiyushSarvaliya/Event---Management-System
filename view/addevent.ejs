@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event add</title>
+    <style>
+        form{
+            border: 2px solid black;
+            text-transform: capitalize;
+            width: max-content;
+            padding: 20px;
+            margin-top: 20px;
+            margin-left: 500px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include("nav") %> <br><br>
+    
+    <form action="/event/addevent" method="POST" enctype="multipart/form-data">
+        <h1>event create</h1>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"  required><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"  required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <label for="maxAttendees">Max Attendees:</label><br>
+        <input type="number" id="maxAttendees" name="maxAttendees"  required><br><br>
+
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image"><br><br>
+
+        <button type="submit"> Event</button>
+    </form>
+
+    <a href="/event/home">Back to Events</a>
+</body>
+</html>

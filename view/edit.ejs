@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit page</title>
+    <style>
+        form{
+            border: 2px solid black;
+            text-transform: capitalize;
+            width: max-content;
+            padding: 20px;
+            margin-top: 20px;
+            margin-left: 500px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <%-include("nav") %>
+    
+    <form method="post" action="/event/<%= events._id %>?_method=PATCH"  >
+        <h1>edit data</h1><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value="<%= events.title %>" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <input id="description" name="description" value="<%= events.description %>" required></input><br><br>
+
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date" value="<%= events.date %>"   required><br><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" value="<%= events.location %>"   required><br><br>
+
+        <label for="maxAttendees">Max Attendees:</label><br>
+        <input type="number" id="maxAttendees" name="maxAttendees" value="<%= events.maxAttendees %>"  required><br><br>
+
+        
+        <button type="submit"> Event</button>
+    </form>
+
+   
+</body>
+</html>

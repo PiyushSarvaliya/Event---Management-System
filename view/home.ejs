@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home page</title>
+  <style>
+    #form {
+      border: 2px solid black;
+      text-transform: capitalize;
+      width: max-content;
+      padding: 20px;
+      margin-top: 20px;
+      margin-left: 550px;
+      border-radius: 20px;
+    }
+
+    #form h1 {
+      text-align: center;
+    }
+
+    .ui {
+      display: grid;
+      grid-template-columns: repeat(4 , 1fr);
+      margin: 100px;
+    }
+    .box{
+      border: 2px solid black;
+      width: max-content;
+      padding: 20px;
+      text-transform: capitalize;
+      border-radius: 10px;
+    }
+    .box img{
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <%-include("nav") %> <br><br>
+
+    <form method="GET" action="/event/home" id="form">
+      <h1>filter event</h1><br>
+      <label for="date">Date:</label><br>
+      <input type="date" id="date" name="date" /><br><br>
+
+      <label for="location">Location:</label><br>
+      <input type="text" id="location" name="location" placeholder="Enter location" /><br><br>
+
+      <button type="submit">Filter</button>
+    </form><br><br>
+
+    <div class="ui">
+      <% data.forEach(event=> { %>
+        <div class="box">
+          <h1>event detail</h1><br>
+          <h2>
+            title :- <%= event.title %>
+          </h2><br>
+          <h3>
+            des :- <%= event.description %>
+          </h3><br>
+          <img src="/uploads/<%= event.imageUrl %>" alt="Event Image" />
+          <h4>Date: <%= event.date.toDateString() %>
+          </h4><br>
+
+          <h5>Attendees: <%= event.attendees.length %> / <%= event.maxAttendees %>
+          </h5><br>
+
+          <% if (event.attendees.length < !event.maxAttendees) { %>
+            <p>Event is full!</p>
+            <% } else { %>
+              <form action="/event/RSPV/<%= event._id %>" method="post">
+                <button type="submit">RSVP</button>
+              </form><br>
+              <% } %>
+                <form action="/event/<%= event._id %>?_method=DELETE" method="post">
+                  <button>Delete</button>
+                </form><br>
+                <button> <a href="/event/<%= event._id %>/edit">Edit</a></button>
+        </div>
+        <% }) %>
+    </div>
+</body>
+
+</html>
