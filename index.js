@@ -17,6 +17,9 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/user", userrouter)
 app.use("/event" , eventroute)
 
+app.use("/" ,(req , res)=>{
+    res.redirect("/user/signup")
+})
 
 app.listen(process.env.PORT, () => {
     connect()
